@@ -1,0 +1,67 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api
+
+# получение объявлений
+GET {{baseUrl}}/advertisements/?limit=50
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+{
+  "title": "Стул IKEA_13",
+  "description": "Недорого"
+}
+
+###
+
+# попытка поменять объявление
+PATCH {{baseUrl}}/advertisements/2/
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+{
+  "status": "DRAFT"
+}
+
+###
+
+# попытка удалить объявление
+DELETE {{baseUrl}}/advertisements/11/
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=2&limit=5
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_before=2020-10-01
+Content-Type: application/json
+
+###
+
+# добавить объявление с <id> в избранное,
+# повторный запрос удаляет объявление с <id> из избранного
+GET {{baseUrl}}/advertisements/2/favorite/
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
+
+
+###
+
+# запрос избранного текущего пользователя
+GET {{baseUrl}}/advertisements/favorites/
+Content-Type: application/json
+Authorization: Token 5b43a72cb37dd2bb2dd265a8b81091fb8ffa99c0
